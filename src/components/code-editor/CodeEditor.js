@@ -3,7 +3,7 @@ import { Button } from "../button/Button";
 import "./CodeEditor.css";
 import { useRef, useState } from "react";
 
-function CodeEditor() {
+function CodeEditor({ setLoading, setFeedback }) {
   const hiddenFileInput = useRef(null);
   const [fileContent, setFileContent] = useState("");
   let fileReader;
@@ -28,6 +28,10 @@ function CodeEditor() {
     handleFile(fileUploaded);
   };
 
+  const handleSubmit = () => {
+    setLoading(true);
+  };
+
   return (
     <div>
       <div className="line">
@@ -38,7 +42,9 @@ function CodeEditor() {
         <input ref={hiddenFileInput} multiple={false} type="file" onChange={handleChange} style={{ display: "none" }} />
       </div>
       <Editor height="83vh" defaultLanguage="kotlin" value={fileContent} />
-      <Button className="submit-btn">Submit</Button>
+      <Button onClick={handleSubmit} className="submit-btn">
+        Submit
+      </Button>
     </div>
   );
 }
