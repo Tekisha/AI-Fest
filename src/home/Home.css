@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-left {
+  flex: 0.5;
+}
+
+.main-right {
+  flex: 0.5;
+}
+
+.logo {
+  background-color: #d87f02;
+  text-align: center;
+}
+
+.logo img {
+  height: 200px;
+  background-color: white;
+  margin: auto;
+}
