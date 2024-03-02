@@ -14,10 +14,18 @@
 .logo {
   background-color: #d87f02;
   text-align: center;
+  height: 270px;
 }
 
 .logo img {
   height: 200px;
   background-color: white;
   margin: auto;
+}
+
+.description > div {
+  margin: auto;
+  width: 80%;
+  margin-top: -70px;
+  padding: 1.5rem;
 }
