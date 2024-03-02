@@ -23,9 +23,25 @@
   margin: auto;
 }
 
-.description > div {
+.description > div:first-child {
+  margin-top: -70px;
+}
+
+.description > div, .submission-results > div {
   margin: auto;
   width: 80%;
-  margin-top: -70px;
   padding: 1.5rem;
+}
+
+.submission-results > div {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: #d87f02 !important;
+}
+
+.MuiLinearProgress-root {
+  background-color: #d87f0257 !important;
 }

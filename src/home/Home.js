@@ -1,9 +1,15 @@
 import "./Home.css";
+import * as React from "react";
 import KodestLogo from "../assets/images/kodest-logo.png";
 import { Card, CardDescription, CardHeader } from "../components/card/Card";
 import CodeEditor from "../components/code-editor/CodeEditor";
+import { useState } from "react";
+import { LinearProgress } from "@mui/material";
 
 function Home() {
+  const [feedback, setFeedback] = useState("");
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="main">
       <div className="main-left">
@@ -19,9 +25,15 @@ function Home() {
             </CardDescription>
           </Card>
         </div>
+        <div className="submission-results">
+          <Card>
+            <CardHeader>Submission results</CardHeader>
+            <CardDescription>{loading ? <LinearProgress /> : "In order to see your submission results, you have to first submit the solution."}</CardDescription>
+          </Card>
+        </div>
       </div>
       <div className="main-right">
-        <CodeEditor />
+        <CodeEditor setLoading={setLoading} setFeedback={setFeedback} />
       </div>
     </div>
   );
