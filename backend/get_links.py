@@ -1,8 +1,8 @@
 import json
-import os
 
 from duckduckgo_search import DDGS
 from utils import get_completion
+from time import sleep
 
 
 def get_topic_links(topic, sites, max_results=1):
@@ -86,7 +86,11 @@ def get_links_for_problem(problem_name, correct_solution, tests, sites):
     response = get_completion(topics_prompt, llm_input)
 
     topics = list(json.loads(response))
-    return sum([get_topic_links(topic, sites) for topic in topics], [])
+    links = []
+    for topic in topics:
+        links = links + get_topic_links(topic, sites)
+        sleep(2)
+    return links
 
 
 if __name__ == "__main__":
