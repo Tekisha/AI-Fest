@@ -24,58 +24,65 @@ Follow these instructions to get a copy of the project up and running on your lo
 #### Setting Up the Backend
 
 1. Clone the repository to your local machine:
-
-- ```git clone https://github.com/Tekisha/AI-Fest.git```
-
-- ```cd AI-Fest/backend```
+    ```bash
+    git clone https://github.com/Tekisha/AI-Fest.git
+    cd AI-Fest/backend
+    ```
 
 2. Create and activate a Python virtual environment:
+    - **Unix/Linux/macOS:**
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+    - **Windows:**
+    ```bash
+    python -m venv venv
+    venv\Scripts\activate
+    ```
 
-- **Unix/Linux/macOS:** 
-```python3 -m venv venv```
-```source venv/bin/activate```
-
-- **Windows:** 
-```python -m venv venv```
-```venv\Scripts\activate```
-
-
-3. Install the required Python packages:
-
-- ```pip install -r requirements.txt```
-
+3. Install the required Python packages: 
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 4. Set the `GRAZIE_JWT_TOKEN` environment variable to your Grazie API token:
 
-**Unix/Linux/macOS:**
-
-- ```export GRAZIE_JWT_TOKEN=your_grazie_api_token```
-
-**Windows:**
-
-- ```set GRAZIE_JWT_TOKEN=your_grazie_api_token```
-
-
+    - **Unix/Linux/macOS:**
+    ```bash
+    export GRAZIE_JWT_TOKEN=your_grazie_api_token
+    ```
+    - **Windows:**
+    ```bash
+    set GRAZIE_JWT_TOKEN=your_grazie_api_token
+    ```
+   
 5. Run the backend server:
 
-- ```uvicorn main:app --reload```
+   ```bash 
+   uvicorn main:app --reload
+    ```
 
 The backend will be available at `http://localhost:8000`.
 
 #### Setting Up the Frontend
 
 1. Navigate to the frontend directory:
-
-- ```cd ../frontend```
+    ```bash
+    cd ../frontend
+    ```
 
 2. Install npm packages:
 
-- ```npm install```
-
+   ```bash
+    npm install
+   ```
 
 3. Start the React development server:
 
-- ```npm start```
+   ```bash
+    npm start
+   ```
 
 
 The frontend will be available at `http://localhost:3000`.
