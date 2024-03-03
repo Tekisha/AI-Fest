@@ -27,13 +27,13 @@
   margin-top: -70px;
 }
 
-.description > div, .submission-results > div {
+.description > div, .submission-results > div, .useful-links > div {
   margin: auto;
   width: 80%;
   padding: 1.5rem;
 }
 
-.submission-results > div {
+.submission-results > div, .useful-links > div {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -54,7 +54,7 @@
   margin-top: 40px;
 }
 
-/* .button-footer > * {
-  margin-left: 30px;
-  margin-right: 30px;
-} */
+.useful-links a {
+  color: #d87f02;
+  font-weight: bold;
+}

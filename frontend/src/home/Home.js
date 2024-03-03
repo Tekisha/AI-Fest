@@ -12,6 +12,8 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [problems, setProblems] = useState([]);
   const [currentHint, setCurrentHint] = useState(0);
+  const [usefulLinks, setUsefulLinks] = useState([]);
+  const [currentUsefulLink, setCurrentUsefulLink] = useState(0);
 
   useEffect(() => {
     const fetchProblems = async () => {
@@ -28,12 +30,16 @@ function Home() {
     };
   }, []);
 
-  const handlePrevious = () => {
-    setCurrentHint(currentHint - 1);
+  const handlePrevious = (currentVal, setter) => {
+    return () => {
+      setter(currentVal - 1);
+    };
   };
 
-  const handleNext = () => {
-    setCurrentHint(currentHint + 1);
+  const handleNext = (currentVal, setter) => {
+    return () => {
+      setter(currentVal + 1);
+    };
   };
 
   return (
@@ -69,10 +75,10 @@ function Home() {
             {hints?.length > 0 ? (
               <CardFooter>
                 <div className="button-footer">
-                  <Button disabled={currentHint === 0} onClick={handlePrevious}>
+                  <Button disabled={currentHint === 0} onClick={handlePrevious(currentHint, setCurrentHint)}>
                     Previous
                   </Button>
-                  <Button disabled={currentHint === hints?.length - 1} onClick={handleNext}>
+                  <Button disabled={currentHint === hints?.length - 1} onClick={handleNext(currentHint, setCurrentHint)}>
                     Next
                   </Button>
                 </div>
@@ -82,9 +88,41 @@ function Home() {
             )}
           </Card>
         </div>
+        <div className="useful-links">
+          {usefulLinks.length > 0 ? (
+            <Card>
+              <CardHeader>
+                Useful Resources <br /> <br />{" "}
+                {usefulLinks?.length > 0 ? `Resource ${currentUsefulLink + 1} / ${usefulLinks?.length} - ${usefulLinks[currentUsefulLink]?.title}` : ""}
+              </CardHeader>
+              <CardDescription>
+                {usefulLinks[currentUsefulLink]?.text} <br /> <br />{" "}
+                <a href={usefulLinks[currentUsefulLink]?.url} target="_blank" rel="noreferrer">
+                  Link
+                </a>
+              </CardDescription>
+              {usefulLinks?.length > 0 ? (
+                <CardFooter>
+                  <div className="button-footer">
+                    <Button disabled={currentUsefulLink === 0} onClick={handlePrevious(currentUsefulLink, setCurrentUsefulLink)}>
+                      Previous
+                    </Button>
+                    <Button disabled={currentUsefulLink === usefulLinks?.length - 1} onClick={handleNext(currentUsefulLink, setCurrentUsefulLink)}>
+                      Next
+                    </Button>
+                  </div>
+                </CardFooter>
+              ) : (
+                ""
+              )}
+            </Card>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
       <div className="main-right">
-        <CodeEditor setLoading={setLoading} setHints={setHints} problems={problems} />
+        <CodeEditor setLoading={setLoading} setHints={setHints} problems={problems} setUsefulLinks={setUsefulLinks} />
       </div>
     </div>
   );

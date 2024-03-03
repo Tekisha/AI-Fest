@@ -4,7 +4,7 @@ import "./CodeEditor.css";
 import { useRef, useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../select/Select";
 
-function CodeEditor({ setLoading, setHints, problems }) {
+function CodeEditor({ setLoading, setHints, problems, setUsefulLinks }) {
   const hiddenFileInput = useRef(null);
   const [fileContent, setFileContent] = useState("");
   const [selectedProblemId, setSelectedProblemId] = useState("1");
@@ -43,8 +43,12 @@ function CodeEditor({ setLoading, setHints, problems }) {
     });
     const hintsJson = await hintsResponse.json();
 
+    const usefulLinksResponse = await fetch(`http://localhost:8000/api/problem-links/${selectedProblemId}`);
+    const usefulLinksJson = await usefulLinksResponse.json();
+
     setLoading(false);
     setHints(hintsJson.hints);
+    setUsefulLinks(usefulLinksJson.links);
   };
 
   const handleSelectChange = (e) => {
