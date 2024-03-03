@@ -42,6 +42,10 @@ def get_hints(problem_name, student_solution, correct_solution, tests):
 
     Provide your hints as a json list of strings.
 
+    If the student's solution is incorrect, provide hints to help them correct it. If the student's solution is correct, provide hints to help them improve it.
+
+    If the student's solution is blank, provide hints to help them get started. Explain the reasoning behind the solution and provide examples.
+
     Do not say that the code or function is the student's. Specifically, don't begin a hint with a phrase like "In the student's function" or "In the student's code". Just refer to functions and code snippets directly.
 
     Do not ask the student to compare their solution to the correct solution. They do not have access to it.
