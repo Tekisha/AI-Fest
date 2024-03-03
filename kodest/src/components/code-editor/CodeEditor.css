@@ -8,3 +8,9 @@
   margin-top: 1.5rem;
   margin-left: 3rem;
 }
+
+#problem-select {
+  margin-left: 24px;
+  margin-right: 24px;
+  width: 50%;
+}

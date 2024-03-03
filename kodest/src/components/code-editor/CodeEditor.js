@@ -2,10 +2,13 @@ import { Editor } from "@monaco-editor/react";
 import { Button } from "../button/Button";
 import "./CodeEditor.css";
 import { useRef, useState } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../select/Select";
 
-function CodeEditor({ setLoading, setFeedback }) {
+function CodeEditor({ setLoading, setHints, problems }) {
   const hiddenFileInput = useRef(null);
   const [fileContent, setFileContent] = useState("");
+  const [selectedProblemId, setSelectedProblemId] = useState("1");
+
   let fileReader;
 
   const handleClick = () => {
@@ -28,8 +31,33 @@ function CodeEditor({ setLoading, setFeedback }) {
     handleFile(fileUploaded);
   };
 
-  const handleSubmit = () => {
+  const getHints = async () => {
+    const hintsResponse = await fetch(`http://localhost:8000/api/hints/${selectedProblemId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        student_solution: fileContent,
+      }),
+    });
+    const hintsJson = await hintsResponse.json();
+
+    setLoading(false);
+    setHints(hintsJson.hints);
+  };
+
+  const handleSelectChange = (e) => {
+    setSelectedProblemId(e);
+  };
+
+  const handleSubmit = async () => {
     setLoading(true);
+    await getHints();
+  };
+
+  const handleEditorChange = (e) => {
+    setFileContent(e);
   };
 
   return (
@@ -40,8 +68,20 @@ function CodeEditor({ setLoading, setFeedback }) {
           Upload a File
         </Button>
         <input ref={hiddenFileInput} multiple={false} type="file" onChange={handleChange} style={{ display: "none" }} />
+        <Select onValueChange={handleSelectChange} defaultValue="1">
+          <SelectTrigger id="problem-select">
+            <SelectValue placeholder="Select a problem" />
+          </SelectTrigger>
+          <SelectContent>
+            {problems.map((pr) => (
+              <SelectItem key={pr.id} value={pr.id}>
+                {pr.problem_name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
-      <Editor height="83vh" defaultLanguage="kotlin" value={fileContent} />
+      <Editor height="83vh" defaultLanguage="kotlin" value={fileContent} onChange={handleEditorChange} />
       <Button onClick={handleSubmit} className="submit-btn">
         Submit
       </Button>
