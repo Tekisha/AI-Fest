@@ -18,13 +18,9 @@ async def get_hints_for_id(problem_id: str, request: HintRequest):
         raise HTTPException(status_code=404, detail="Problem not found")
 
     try:
-<<<<<<< HEAD
-        hints = get_hints(
-            problem_name, request.student_solution, correct_solution, tests
+        hints = retry(
+            get_hints, problem_name, request.student_solution, correct_solution, tests
         )
-=======
-        hints = retry(get_hints, problem_name, request.student_solution, correct_solution, tests)
->>>>>>> 148f224792468c119468497b73c3d7edafcd1b04
         return HintResponse(hints=hints)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
