@@ -52,7 +52,7 @@ def retry(func, *args, **kwargs):
     returns:
     The result of the function
     """
-    number_of_tries = 2
+    number_of_tries = 3
     for i in range(number_of_tries):
         try:
             return func(*args, **kwargs)
