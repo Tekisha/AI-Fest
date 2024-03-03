@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from backend.schemas import TopicLinkRequest, TopicLinkResponse, ProblemSearchRequest
-from backend.get_links import get_topic_links, get_links_for_problem
+from schemas import TopicLinkRequest, TopicLinkResponse, ProblemSearchRequest
+from get_links import get_topic_links, get_links_for_problem
+from database import get_correct_solution, get_tests, get_problem_name
+from constants import sites
 
 router = APIRouter()
 
@@ -14,10 +16,13 @@ async def get_topic_links(request: TopicLinkRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get("/problem-links", response_model=TopicLinkResponse)
-async def get_problem_links(request: ProblemSearchRequest):
+@router.get("/problem-links/{problem_id}", response_model=TopicLinkResponse)
+async def get_problem_links(problem_id: str):
+    problem_name = get_problem_name(problem_id)
+    correct_solution = get_correct_solution(problem_id)
+    tests = get_tests(problem_id)
     try:
-        links = get_links_for_problem(request.problem_name, request.correct_solution, request.tests, request.sites)
+        links = get_links_for_problem(problem_name, correct_solution, tests, sites)
         return TopicLinkResponse(links=links)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

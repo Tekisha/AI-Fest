@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from api.hints import router as hint_router
 from api.links import router as link_router
-from backend.settings import settings
+from settings import settings
 
 app = FastAPI(title=settings.project_name, version=settings.version)
 

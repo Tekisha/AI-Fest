@@ -1,0 +1,1 @@
+sites = ["hyperskill.org", "geeksforgeeks.org", "freecodecamp.org", "wikipedia.org"]

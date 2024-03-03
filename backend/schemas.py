@@ -3,10 +3,7 @@ from typing import List, Optional
 
 
 class HintRequest(BaseModel):
-    problem_name: str
     student_solution: str
-    correct_solution: str
-    tests: str
 
 
 class HintResponse(BaseModel):
