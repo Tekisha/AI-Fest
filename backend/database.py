@@ -181,11 +181,11 @@ tests = {
     """
 }
 
-def get_problem_name(problem_id: str):
-    return problem_names[problem_id]
+def get_problem_name(problem_id: str) -> str | None:
+    return problem_names[problem_id] if problem_id in problem_names else None
 
-def get_correct_solution(problem_id: str):
-    return correct_solutions[problem_id]
+def get_correct_solution(problem_id: str) -> str | None:
+    return correct_solutions[problem_id] if problem_id in correct_solutions else None
 
-def get_tests(problem_id: str):
-    return tests[problem_id]
+def get_tests(problem_id: str) -> str | None:
+    return tests[problem_id] if problem_id in tests else None

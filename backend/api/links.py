@@ -21,6 +21,10 @@ async def get_problem_links(problem_id: str):
     problem_name = get_problem_name(problem_id)
     correct_solution = get_correct_solution(problem_id)
     tests = get_tests(problem_id)
+
+    if problem_name is None or correct_solution is None or tests is None:
+        raise HTTPException(status_code=404, detail="Problem not found")
+
     try:
         links = get_links_for_problem(problem_name, correct_solution, tests, sites)
         return TopicLinkResponse(links=links)
