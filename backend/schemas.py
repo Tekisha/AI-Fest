@@ -19,11 +19,18 @@ class TopicLinkRequest(BaseModel):
     max_results: Optional[int] = 1
 
 
-class SearchResult(BaseModel):
+class LinkResult(BaseModel):
     title: str
     url: str
     text: str
 
 
 class TopicLinkResponse(BaseModel):
-    results: List[SearchResult]
+    links: List[LinkResult]
+
+
+class ProblemSearchRequest(BaseModel):
+    problem_name: str
+    correct_solution: str
+    tests: str
+    sites: List[str]

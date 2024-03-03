@@ -1,13 +1,15 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-from .. import schemas
-from ..get_hints import get_hints
-from ..schemas import HintResponse
+from backend.get_hints import get_hints
+from backend.schemas import HintResponse, HintRequest
 
 router = APIRouter()
 
 
-@router.post("/hints", response_model=HintResponse)
-async def get_hints(request: schemas.HintRequest):
-    hints = get_hints(request.problem_name, request.student_solution, request.correct_solution, request.tests)
-    return HintResponse(hints=hints)
+@router.get("/hints", response_model=HintResponse)
+async def get_hints(request: HintRequest):
+    try:
+        hints = get_hints(request.problem_name, request.student_solution, request.correct_solution, request.tests)
+        return HintResponse(hints=hints)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
