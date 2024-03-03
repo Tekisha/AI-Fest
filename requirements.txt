@@ -1,4 +1,0 @@
-fastapi[all]
-uvicorn
-duckduckgo-search
---extra-index-url https://packages.jetbrains.team/pypi/p/grazi/jetbrains-ai-platfrom-public/simple grazie-package-name==0.0.19
