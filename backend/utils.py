@@ -41,3 +41,22 @@ def get_completion(system_prompt: str, input: str):
         }
     )
     return response.content
+
+def retry(func, *args, **kwargs):
+    """
+    Retries a function until it returns a result.
+    params:
+    func: The function to retry
+    args: The arguments to pass to the function
+    kwargs: The keyword arguments to pass to the function
+    returns:
+    The result of the function
+    """
+    number_of_tries = 2
+    for i in range(number_of_tries):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            print(e)
+            if i == number_of_tries - 1:
+                raise e

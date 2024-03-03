@@ -3,6 +3,7 @@ from schemas import TopicLinkRequest, TopicLinkResponse, ProblemSearchRequest
 from get_links import get_topic_links, get_links_for_problem
 from database import get_correct_solution, get_tests, get_problem_name
 from constants import sites
+from utils import retry
 
 router = APIRouter()
 
@@ -26,7 +27,7 @@ async def get_problem_links(problem_id: str):
         raise HTTPException(status_code=404, detail="Problem not found")
 
     try:
-        links = get_links_for_problem(problem_name, correct_solution, tests, sites)
+        links = retry(get_links_for_problem, problem_name, correct_solution, tests, sites)
         return TopicLinkResponse(links=links)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
