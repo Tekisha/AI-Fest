@@ -31,3 +31,12 @@ class ProblemSearchRequest(BaseModel):
     correct_solution: str
     tests: str
     sites: List[str]
+
+
+class ProblemItem(BaseModel):
+    id: str
+    problem_name: str
+
+
+class ProblemsResponse(BaseModel):
+    problems: List[ProblemItem]

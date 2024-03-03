@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from api.hints import router as hint_router
 from api.links import router as link_router
+from api.problems import router as problem_router
 from settings import settings
 
 app = FastAPI(title=settings.project_name, version=settings.version)
@@ -17,6 +18,7 @@ app.add_middleware(
 
 app.include_router(hint_router, prefix="/api", tags=["hints"])
 app.include_router(link_router, prefix="/api", tags=["links"])
+app.include_router(problem_router, prefix="/api", tags=["problems"])
 
 if __name__ == "__main__":
     import uvicorn

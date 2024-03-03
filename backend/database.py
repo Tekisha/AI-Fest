@@ -189,3 +189,9 @@ def get_correct_solution(problem_id: str) -> str | None:
 
 def get_tests(problem_id: str) -> str | None:
     return tests[problem_id] if problem_id in tests else None
+
+def get_problems() -> dict:
+    return [{
+        "id": problem_id,
+        "problem_name": problem_name
+    } for problem_id, problem_name in problem_names.items()]
