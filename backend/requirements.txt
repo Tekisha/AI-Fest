@@ -1,5 +1,4 @@
-fastapi
-duckduckgo-search
+fastapi[all]
 uvicorn
---extra-index-url https://packages.jetbrains.team/pypi/p/grazi/jetbrains-ai-platform-public/simple
-grazie-api-gateway-client==0.0.19
+duckduckgo-search
+--extra-index-url https://packages.jetbrains.team/pypi/p/grazi/jetbrains-ai-platfrom-public/simple grazie-package-name==0.0.19
