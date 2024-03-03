@@ -26,10 +26,13 @@ Follow these instructions to get a copy of the project up and running on your lo
 1. Clone the repository to your local machine:
     ```bash
     git clone https://github.com/Tekisha/AI-Fest.git
-    cd AI-Fest/backend
     ```
+2. Navigate to the backend directory:
+    ```bash
+    cd AI-Fest/backend
+    ``` 
 
-2. Create and activate a Python virtual environment:
+3. Create and activate a Python virtual environment:
     - **Unix/Linux/macOS:**
     ```bash
     python3 -m venv venv
@@ -41,12 +44,12 @@ Follow these instructions to get a copy of the project up and running on your lo
     venv\Scripts\activate
     ```
 
-3. Install the required Python packages: 
+4. Install the required Python packages: 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. Set the `GRAZIE_JWT_TOKEN` environment variable to your Grazie API token:
+5. Set the `GRAZIE_JWT_TOKEN` environment variable to your Grazie API token:
 
     - **Unix/Linux/macOS:**
     ```bash
@@ -57,7 +60,7 @@ Follow these instructions to get a copy of the project up and running on your lo
     set GRAZIE_JWT_TOKEN=your_grazie_api_token
     ```
    
-5. Run the backend server:
+6. Run the backend server:
 
    ```bash 
    uvicorn main:app --reload
