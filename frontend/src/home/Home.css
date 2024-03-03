@@ -1,0 +1,60 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-left {
+  flex: 0.5;
+}
+
+.main-right {
+  flex: 0.5;
+}
+
+.logo {
+  background-color: #d87f02;
+  text-align: center;
+  height: 270px;
+}
+
+.logo img {
+  height: 200px;
+  background-color: white;
+  margin: auto;
+}
+
+.description > div:first-child {
+  margin-top: -70px;
+}
+
+.description > div, .submission-results > div, .useful-links > div {
+  margin: auto;
+  width: 80%;
+  padding: 1.5rem;
+}
+
+.submission-results > div, .useful-links > div {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: #d87f02 !important;
+}
+
+.MuiLinearProgress-root {
+  background-color: #d87f0257 !important;
+}
+
+.button-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.useful-links a {
+  color: #d87f02;
+  font-weight: bold;
+}
